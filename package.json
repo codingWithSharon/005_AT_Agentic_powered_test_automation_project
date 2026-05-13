@@ -1,0 +1,20 @@
+{
+  "name": "005_at_agentic_powered_test_automation_project",
+  "version": "1.0.0",
+  "description": "So after setting up the instructions and entering a prompt it created an entire test automation project in about 17 minutes. At first glance it looked pretty impressive but as we take a closer look we started to see a lot of things that where just not right. Below a list of findings of the first run:",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "HEADED=1 playwright test",
+    "report": "playwright show-report"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.60.0"
+  }
+}

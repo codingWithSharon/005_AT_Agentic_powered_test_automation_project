@@ -5,7 +5,7 @@ This is my AI Agent workspae. I use it for reasearch, content creation, producti
 
 # About me
 
-I am a QA Test Automation Engineer. I setup test automation projects for web UI's and API's and write automated tests. My favorite language is C# and my favorite testing framework is Playwright. I use GitHub for my repositories and use GitHub Actions to schedule automated tests using YML files.
+I am a QA Test Automation Engineer. I setup test automation projects for web UI's and API's and write automated tests. My favorite language is JavaScript and my favorite testing framework is Playwright. I use GitHub for my repositories and use GitHub Actions to schedule automated tests using YML files.
 
 # Rules
 

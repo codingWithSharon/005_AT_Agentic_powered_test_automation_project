@@ -4,8 +4,9 @@
 
 | Item | Detail |
 |------|--------|
-| Framework | C# / NUnit / Playwright 1.59 |
-| Browser | Chromium (headless) |
+| Language | JavaScript |
+| Framework | @playwright/test 1.60+ |
+| Browser | Chromium |
 | Target | https://the-internet.herokuapp.com |
 | Total Tests | 12 |
 | ISTQB Types | Functional, Boundary Value, State Transition |
@@ -16,9 +17,9 @@
 
 | Page | URL | POM File | Test Fixture |
 |------|-----|----------|--------------|
-| Add/Remove Elements | /add_remove_elements/ | AddRemoveElementsPage.cs | AddRemoveElementsTests.cs |
-| Checkboxes | /checkboxes | CheckboxesPage.cs | CheckboxesTests.cs |
-| Floating Menu | /floating_menu | FloatingMenuPage.cs | FloatingMenuTests.cs |
+| Add/Remove Elements | /add_remove_elements/ | AddRemoveElementsPage.js | AddRemoveElementsTests.spec.js |
+| Checkboxes | /checkboxes | CheckboxesPage.js | CheckboxesTests.spec.js |
+| Floating Menu | /floating_menu | FloatingMenuPage.js | FloatingMenuTests.spec.js |
 
 ---
 
@@ -28,10 +29,10 @@ No `data-testid` attributes exist on these pages. All locators use `getByRole` f
 
 | Element | Locator |
 |---------|---------|
-| Add Element button | `GetByRole(AriaRole.Button, new() { Name = "Add Element" })` |
-| Delete button(s) | `GetByRole(AriaRole.Button, new() { Name = "Delete" })` |
-| Checkboxes | `GetByRole(AriaRole.Checkbox).Nth(index)` |
-| Nav links | `GetByRole(AriaRole.Link, new() { Name = "..." })` |
+| Add Element button | `getByRole('button', { name: 'Add Element' })` |
+| Delete button(s) | `getByRole('button', { name: 'Delete' }).nth(index)` |
+| Checkboxes | `getByRole('checkbox').nth(index)` |
+| Nav links | `getByRole('link', { name: '...' })` |
 
 ---
 
@@ -39,9 +40,9 @@ No `data-testid` attributes exist on these pages. All locators use `getByRole` f
 
 | Fixture | Tests | ISTQB Types |
 |---------|-------|-------------|
-| AddRemoveElementsTests | 4 | Functional, Boundary Value |
-| CheckboxesTests | 4 | Functional, State Transition |
-| FloatingMenuTests | 4 | Functional |
+| AddRemoveElementsTests.spec.js | 4 | Functional, Boundary Value |
+| CheckboxesTests.spec.js | 4 | Functional, State Transition |
+| FloatingMenuTests.spec.js | 4 | Functional |
 | **Total** | **12** | |
 
 ---
@@ -65,8 +66,20 @@ No `data-testid` attributes exist on these pages. All locators use `getByRole` f
 
 ---
 
+## Headless / Headed Mode
+
+| Environment | Mode | How |
+|-------------|------|-----|
+| Local (default) | Headless | `npx playwright test` |
+| Local (headed) | Headed | `HEADED=1 npx playwright test` |
+| CI (GitHub Actions) | Headless | `CI=true` is auto-set; `HEADED` is unset |
+
+Single `playwright.config.js` handles both — no separate runsettings files needed.
+
+---
+
 ## CI/CD
 
 - **Trigger:** push/PR to main + daily schedule (00:00 UTC)
 - **Workflow file:** `.github/workflows/playwright-tests.yml`
-- **Artifact:** TRX test results uploaded on every run
+- **Artifact:** HTML report uploaded on every run (`playwright-report/`)
