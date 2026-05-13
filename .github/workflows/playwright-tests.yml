@@ -1,0 +1,41 @@
+name: Playwright Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore tests/Tests.csproj
+
+      - name: Build
+        run: dotnet build tests/Tests.csproj --no-restore
+
+      - name: Install Playwright browsers
+        run: pwsh tests/bin/Debug/net9.0/playwright.ps1 install --with-deps
+
+      - name: Run tests
+        run: dotnet test tests/Tests.csproj --settings tests/test.runsettings --no-build --logger "trx;LogFileName=test-results.trx"
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: tests/TestResults/test-results.trx
