@@ -31,7 +31,7 @@ jobs:
         run: pwsh tests/bin/Debug/net9.0/playwright.ps1 install --with-deps
 
       - name: Run tests
-        run: dotnet test tests/Tests.csproj --settings tests/test.runsettings --no-build --logger "trx;LogFileName=test-results.trx"
+        run: dotnet test tests/Tests.csproj --settings tests/test.ci.runsettings --no-build --logger "trx;LogFileName=test-results.trx"
 
       - name: Upload test results
         uses: actions/upload-artifact@v4

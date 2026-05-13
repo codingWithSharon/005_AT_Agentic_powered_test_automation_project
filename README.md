@@ -1,5 +1,22 @@
 # READ ME PLEASE
 
+# UPDATES
+
+### Log first agent run
+
+So after setting up the instructions and entering a prompt it created an entire test automation project in about 17 minutes. At first glance it looked pretty impressive but as we take a closer look we started to see a lot of things that where just not right. Below a list of findings of the first run:
+
+- Languange confusing
+- Why is the solution empty
+- Where are the Playwright browsers
+- Pipeline doesn't even work
+- The tests look awfull
+
+We can go on...
+
+
+## Instructions
+
 This guide will help you set up your first automated test project with agentic AI. For this project we will keep the testtargets simple so we can focus on learning more about agentic AI. For this project we will use CLaude Code.
 
 ## Getting started
